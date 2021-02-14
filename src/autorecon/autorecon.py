@@ -874,6 +874,8 @@ def main():
 
         elapsed_time = calculate_elapsed_time(start_time)
         info('{bgreen}Finished scanning all targets in {elapsed_time}!{rst}')
+        os.system('stty sane') #for cleaning linux terminal
+        os.system('stty erase ^H') #for cleaning linux terminal
 
 
 if __name__ == '__main__':
