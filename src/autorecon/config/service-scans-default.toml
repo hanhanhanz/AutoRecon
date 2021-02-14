@@ -132,9 +132,9 @@ ignore-service-names = [
 #    name = 'curl-index'
 #    command = 'curl -sSik {scheme}://{address}:{port}/ -m 10 2>&1 | tee "{scandir}/{protocol}_{port}_{scheme}_index.html"'
 
-        [[http.scan.pattern]]
-        description = 'Powered by'
-        pattern = '(?i)Powered by [^\n]+'
+#        [[http.scan.pattern]]
+#        description = 'Powered by'
+#        pattern = '(?i)Powered by [^\n]+'
 
     [[http.scan]]
     name = 'curl-robots'
