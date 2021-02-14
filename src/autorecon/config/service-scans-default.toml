@@ -128,9 +128,9 @@ ignore-service-names = [
         description = 'WebDAV is enabled'
         pattern = 'WebDAV is ENABLED'
 
-    [[http.scan]]
-    name = 'curl-index'
-    command = 'curl -sSik {scheme}://{address}:{port}/ -m 10 2>&1 | tee "{scandir}/{protocol}_{port}_{scheme}_index.html"'
+#    [[http.scan]]
+#    name = 'curl-index'
+#    command = 'curl -sSik {scheme}://{address}:{port}/ -m 10 2>&1 | tee "{scandir}/{protocol}_{port}_{scheme}_index.html"'
 
         [[http.scan.pattern]]
         pattern = '(?i)Powered by [^\n]+'
@@ -145,7 +145,7 @@ ignore-service-names = [
 
     [[http.scan]]
     name = 'whatweb'
-    command = 'whatweb --color=never --no-errors -a 3 -v {scheme}://{address}:{port} 2>&1 | tee "{scandir}/{protocol}_{port}_{scheme}_whatweb.txt"'
+    command = 'whatweb --color=never --no-errors -a 3 {scheme}://{address}:{port} 2>&1 | tee "{scandir}/{protocol}_{port}_{scheme}_whatweb.txt"'
 
     [[http.scan]]
     name = 'nikto'
