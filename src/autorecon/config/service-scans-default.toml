@@ -292,7 +292,7 @@ service-names = [
     
     [[mysql.scan]]
     name = 'mysql-list-databases'
-    command = 'mysql -h {address} -u root -e 'show databases;' > {scandir}/{protocol}_{port}_mysql-list-databases.txt'
+    command = 'mysql -h {address} -u root -e "show databases;: > {scandir}/{protocol}_{port}_mysql-list-databases.txt'
 
 [nfs]
 
@@ -509,8 +509,8 @@ service-names = [
     commands = [
         'nmap {nmap_extra} -sV -p {port} --script="smb-vuln-ms06-025" --script-args="unsafe=1" -oN "{scandir}/{protocol}_{port}_smb_ms06-025.txt" -oX "{scandir}/xml/{protocol}_{port}_smb_ms06-025.xml" {address}',
         'nmap {nmap_extra} -sV -p {port} --script="smb-vuln-ms07-029" --script-args="unsafe=1" -oN "{scandir}/{protocol}_{port}_smb_ms07-029.txt" -oX "{scandir}/xml/{protocol}_{port}_smb_ms07-029.xml" {address}',
-        'nmap {nmap_extra} -sV -p {port} --script="smb-vuln-ms08-067" --script-args="unsafe=1" -oN "{scandir}/{protocol}_{port}_smb_ms08-067.txt" -oX "{scandir}/xml/{protocol}_{port}_smb_ms08-067.xml" {address}'
-        'nmap {nmap_extra} -sV -p {port} --script="smb-vuln-ms17-010" --script-args="unsafe=1" -oN "{scandir}/{protocol}_{port}_smb_ms08-010.txt" -oX "{scandir}/xml/{protocol}_{port}_smb_ms08-010.xml" {address}'
+        'nmap {nmap_extra} -sV -p {port} --script="smb-vuln-ms08-067" --script-args="unsafe=1" -oN "{scandir}/{protocol}_{port}_smb_ms08-067.txt" -oX "{scandir}/xml/{protocol}_{port}_smb_ms08-067.xml" {address}',
+        'nmap {nmap_extra} -sV -p {port} --script="smb-vuln-ms17-010" --script-args="unsafe=1" -oN "{scandir}/{protocol}_{port}_smb_ms17-010.txt" -oX "{scandir}/xml/{protocol}_{port}_smb_ms17-010.xml" {address}'
     ]
     
 
