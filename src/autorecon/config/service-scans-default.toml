@@ -132,9 +132,9 @@ ignore-service-names = [
 #    name = 'curl-index'
 #    command = 'curl -sSik {scheme}://{address}:{port}/ -m 10 2>&1 | tee "{scandir}/{protocol}_{port}_{scheme}_index.html"'
 
-#        [[http.scan.pattern]]
-#        description = 'Powered by'
-#        pattern = '(?i)Powered by [^\n]+'
+        [[http.scan.pattern]]
+        description = 'Powered by'
+        pattern = '(?i)Powered by [^\n]+'
 
     [[http.scan]]
     name = 'curl-robots'
@@ -148,13 +148,17 @@ ignore-service-names = [
     name = 'whatweb'
     command = 'whatweb --color=never --no-errors -a 3 {scheme}://{address}:{port} 2>&1 | tee "{scandir}/{protocol}_{port}_{scheme}_whatweb.txt"'
 
+#    [[http.scan]] #TAKES TOO LONG
+#    name = 'nikto'
+#    command = 'nikto -ask=no -h {scheme}://{address}:{port} 2>&1 | tee "{scandir}/{protocol}_{port}_{scheme}_nikto.txt"'
+
     [[http.scan]]
-    name = 'nikto'
-    command = 'nikto -ask=no -h {scheme}://{address}:{port} 2>&1 | tee "{scandir}/{protocol}_{port}_{scheme}_nikto.txt"'
+    name = 'dirhunt'
+    command = 'dirhunt {scheme}://{address}:{port} 2>&1 | tee "{scandir}/{protocol}_{port}_{scheme}_dirhunt.txt"'
 
     [[http.scan]]
     name = 'gobuster'
-    command = 'if [[ `gobuster -h 2>&1 | grep -F "mode (dir)"` ]]; then gobuster -u {scheme}://{address}:{port}/ -w /usr/share/seclists/Discovery/Web-Content/common.txt -e -k -l -s "200,204,301,302,307,401,403" -x "txt,html,php,asp,aspx,jsp" -o "{scandir}/{protocol}_{port}_{scheme}_gobuster.txt"; else gobuster dir -u {scheme}://{address}:{port}/ -w /usr/share/seclists/Discovery/Web-Content/common.txt -z -k -l -x "txt,html,php,asp,aspx,jsp" -o "{scandir}/{protocol}_{port}_{scheme}_gobuster.txt"; fi'
+    command = 'gobuster dir -t 50 -w /usr/share/seclists/Discovery/Web-Content/common.txt -u {scheme}://{address}:{port} | tee "{scandir}/{protocol}_{port}_{scheme}_gobuster.txt"'
 
     [[http.manual]]
     description = '(dirsearch) Multi-threaded recursive directory/file enumeration for web servers using various wordlists:'
