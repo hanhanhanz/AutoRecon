@@ -118,7 +118,7 @@ ignore-service-names = [
 
     [[http.scan]]
     name = 'nmap-http'
-    command = 'nmap {nmap_extra} -sV -p {port} --script="banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)" -oN "{scandir}/{protocol}_{port}_http_nmap.txt" -oX "{scandir}/xml/{protocol}_{port}_{scheme}_nmap.xml" {address}'
+    command = 'nmap {nmap_extra} -sV -p {port} --script="banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)" --script-timeout 5 -oN "{scandir}/{protocol}_{port}_http_nmap.txt" -oX "{scandir}/xml/{protocol}_{port}_{scheme}_nmap.xml" {address}'
 
         [[http.scan.pattern]]
         description = 'Identified HTTP Server: {match}'
@@ -393,6 +393,22 @@ service-names = [
     name = 'nmap-rdp'
     command = 'nmap {nmap_extra} -sV -p {port} --script="banner,(rdp* or ssl*) and not (brute or broadcast or dos or external or fuzzer)" -oN "{scandir}/{protocol}_{port}_rdp_nmap.txt" -oX "{scandir}/xml/{protocol}_{port}_rdp_nmap.xml" {address}'
 
+    [[rdp.scan]]
+    name = 'rdp-sec-check'
+    command = 'rdp-sec-check "{address}:{port}" | tee "{scandir}/{protocol}_{port}_rdp_rdp-sec-check.txt"'
+
+    [[rdp.scan]]
+    name = 'scrying-rdp'
+    command = 'scrying -t rdp://{address}:{port} -o {scandir} && rm report.html && mv {scandir}/rdp/* "{scandir}/{protocol}_{port}_rdp_scrying.png" && rm -r rdp/'
+
+    [[rdp.scan]]
+    name = 'bluekeep_poc'
+    command = 'bluekeep_poc -i {address} -p {port} -f "{scandir}/{protocol}_{port}_rdp_bluekeep_poc.txt"'
+
+    [[rdp.scan]]
+    name = 'bluekeepscan'
+    command = 'bkscan -t {address} -P {port} | tee "{scandir}/{protocol}_{port}_rdp_bluekeepscan.txt"'
+
     [[rdp.manual]]
     description = 'Bruteforce logins:'
     commands = [
@@ -638,3 +654,7 @@ service-names = [
     [[vnc.scan]]
     name = 'nmap-vnc'
     command = 'nmap {nmap_extra} -sV -p {port} --script="banner,(vnc* or realvnc* or ssl*) and not (brute or broadcast or dos or external or fuzzer)" --script-args="unsafe=1" -oN "{scandir}/{protocol}_{port}_vnc_nmap.txt" -oX "{scandir}/xml/{protocol}_{port}_vnc_nmap.xml" {address}'
+
+    [[vnc.scan]]
+    name = 'scrying-vnc'
+    command = 'scrying -t vnc://{address}:{port} -o {scandir} && rm report.html && mv {scandir}/vnc/* "{scandir}/{protocol}_{port}_vnc_scrying.png" && rm -r vnc/'
