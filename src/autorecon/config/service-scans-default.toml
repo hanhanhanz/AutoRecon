@@ -158,7 +158,7 @@ ignore-service-names = [
 
     [[http.scan]]
     name = 'gobuster'
-    command = 'gobuster dir -t 50 -w /usr/share/seclists/Discovery/Web-Content/common.txt -u {scheme}://{address}:{port} | tee "{scandir}/{protocol}_{port}_{scheme}_gobuster.txt"'
+    command = 'gobuster dir -t 50 -w /usr/share/seclists/Discovery/Web-Content/common.txt -u {scheme}://{address}:{port} -o "{scandir}/{protocol}_{port}_{scheme}_gobuster.txt"'
 
     [[http.manual]]
     description = '(dirsearch) Multi-threaded recursive directory/file enumeration for web servers using various wordlists:'
@@ -457,7 +457,11 @@ service-names = [
 
     [[sip.scan]]
     name = 'svwar'
-    command = 'svwar -D -m INVITE -p {port} {address}'
+    command = 'sipvicious_svwar -D -m INVITE -p {port} {address} | tee "{scandir}/{protocol}_{port}_{scheme}_svwar.txt"'
+
+    [[sip.scan]]
+    name = 'sipscan'
+    command = 'sipscan -h INVITE -h {port} -r {address} | tee "{scandir}/{protocol}_{port}_{scheme}_sipscan.txt"'
 
 [ssh]
 
@@ -513,9 +517,9 @@ service-names = [
     run_once = true
     ports.tcp = [139, 445]
 
-    [[smb.scan]]
-    name = 'smbmap-share-permissions'
-    command = 'smbmap -H {address} -P {port} 2>&1 | tee -a "{scandir}/smbmap-share-permissions.txt"; smbmap -u null -p "" -H {address} -P {port} 2>&1 | tee -a "{scandir}/smbmap-share-permissions.txt"'
+#    [[smb.scan]]
+#    name = 'smbmap-share-permissions'
+#    command = 'smbmap -H {address} -P {port} 2>&1 | tee -a "{scandir}/smbmap-share-permissions.txt"; smbmap -u null -p "" -H {address} -P {port} 2>&1 | tee -a "{scandir}/smbmap-share-permissions.txt"'
 
     [[smb.scan]]
     name = 'smbmap-list-contents'
