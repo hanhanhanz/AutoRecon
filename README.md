@@ -10,6 +10,20 @@ The tool works by firstly performing port scans / service detection scans. From 
 
 Everything in the tool is highly configurable. The default configuration performs **no automated exploitation** to keep the tool in line with OSCP exam rules. If you wish to add automatic exploit tools to the configuration, you do so at your own risk. The author will not be held responsible for negative actions that result from the mis-use of this tool.
 
+## Branch-only notes
+ports module to-do-list
+* Docker
+* mDNS
+* kibana
+* couchDB
+* Redis
+* cassandra
+* elasticsearch
+* memcached
+* mongoDB
+* Hadoop
+* Jira
+
 ## Origin
 
 AutoRecon was inspired by three tools which the author used during the OSCP labs: [Reconnoitre](https://github.com/codingo/Reconnoitre), [ReconScan](https://github.com/RoliSoft/ReconScan), and [bscan](https://github.com/welchbj/bscan). While all three tools were useful, none of the three alone had the functionality desired. AutoRecon combines the best features of the aforementioned tools while also implementing many new features to help testers with enumeration of multiple targets.
