@@ -19,7 +19,7 @@ ports module to-do-list
 * Redis
 * cassandra
 * elasticsearch
-* memcached
+* ~memcached~
 * mongoDB
 * Hadoop
 * Jira
