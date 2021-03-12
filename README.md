@@ -11,7 +11,7 @@ The tool works by firstly performing port scans / service detection scans. From 
 Everything in the tool is highly configurable. The default configuration performs **no automated exploitation** to keep the tool in line with OSCP exam rules. If you wish to add automatic exploit tools to the configuration, you do so at your own risk. The author will not be held responsible for negative actions that result from the mis-use of this tool.
 
 ## Branch-only notes
-ports module to-do-list
+### ports module to-do-list
 * Docker
 * mDNS
 * kibana
@@ -23,6 +23,22 @@ ports module to-do-list
 * mongoDB
 * Hadoop
 * Jira
+### extra tools added
+* dnsenum
+* dnsmap
+* fierce
+* dig
+* dirhunt
+* enum4linux-ng
+* mysqldump
+* mysql
+* rdp-sec-check
+* scrying
+* bkscan
+* sipvicious_svwar
+* sipscan
+* snmp-check
+* memstat
 
 ## Origin
 
