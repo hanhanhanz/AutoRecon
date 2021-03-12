@@ -663,7 +663,7 @@ service-names = [
     name = 'scrying-vnc'
     command = 'scrying -t vnc://{address}:{port} -o {scandir} && rm report.html && mv {scandir}/vnc/* "{scandir}/{protocol}_{port}_vnc_scrying.png" && rm -r vnc/'
 
-[memcached] [
+[memcached] = [
     '^memcached'
 ]
 
